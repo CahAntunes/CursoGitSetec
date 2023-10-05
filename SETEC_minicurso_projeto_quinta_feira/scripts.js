@@ -15,15 +15,15 @@ function calcularComanda() {
     valorConta += comanda[i].valor;
   }
 
-  let porcentagemGorjeta = parseFloat(
+  let porcentagemGorjeta = parseFloat( 
     document.getElementById("porcentagemGorjeta").value
-  );
+  )
 
   if (isNaN(porcentagemGorjeta)) {
     porcentagemGorjeta = 0;
   }
 
-  const gorjeta = valorConta * (porcentagemGorjeta / 0);
+  const gorjeta = valorConta * (porcentagemGorjeta / 100);
 
   if (isNaN(valorConta)) {
     valorConta = 0;
@@ -76,4 +76,23 @@ function atualizarComanda() {
       "</label>";
     comandaDiv.appendChild(itemHtml);
   }
+}
+
+function limparCampos() {
+  comanda = [];
+
+  atualizarComanda();
+
+  document.getElementById("porcentagemGorjeta").value = "";
+  document.getElementById("itensConsumidos").selectedIndex = 0;
+  
+  const resultadoGorjeta = document.getElementById("resultadoGorjeta");
+  resultadoGorjeta.innerHTML = "";
+
+  fecharPopup();
+}
+
+function fecharPopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "none"; 
 }
